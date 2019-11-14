@@ -1,10 +1,7 @@
 package ch14;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
@@ -167,7 +164,86 @@ public class StreamEx0 {
                 .peek(s -> System.out.printf("extension: %s%n", s))     // 확장자를 출력
                 .forEach(System.out::println);
 
+        /** mapToInt, mapToLong, mapToDouble */
+
+        Student[] students = {new Student("김자바", 3, 300),
+                new Student("콩자반", 1, 200),
+                new Student("자바칩", 1, 100),
+                new Student("자비스", 2, 200),
+                new Student("저거봐", 3,  180)
+        };
+
+        Stream<Student> studentStream = Stream.of(students);
+        Stream<Integer> studentScoreStream1 = studentStream.map(Student::getTotalScore);
+        studentStream = Stream.of(students);
+        IntStream studentScoreStream2 = studentStream.mapToInt(Student::getTotalScore);
+
+        // 최종연산 sum() , average() -> 스트림이 닫혀서 한번만 호출이 가능
+//        int totalScore =  studentScoreStream2.sum();
+//        OptionalDouble averageScore = studentScoreStream2.average();
+
+        // summaryStatistics 사용
+        IntSummaryStatistics stat = studentScoreStream2.summaryStatistics();
+
+        long totalScore = stat.getSum();
+        double average =  stat.getAverage();
+
+        System.out.println("totalScore : " + totalScore +", average : " + average);
+
+
+        // 로또번호를 생성해서 출력하는 코드
+        Set<Integer> lotto = new HashSet<>();
+        while(true) {
+            int ranNum = (int)(Math.random()*45)+1;
+            if(lotto.add(ranNum)) {
+                if(lotto.size() == 6) {
+                    break;
+                }
+            }
+        }
+        List<Integer> lottoList = new ArrayList<>(lotto);
+        Collections.sort(lottoList);
+        for(int num : lottoList) {
+            System.out.print(num + ",");
+        }
+
+        System.out.println("------------------------");
+
+        IntStream intStream4 = new Random().ints(1, 46);
+        IntStream lottoStream =  intStream4.limit(6).distinct().sorted();
+        Stream<String> strLottoStream = lottoStream.mapToObj(i -> i+",");
+        strLottoStream.forEach(System.out::print);
+
+        System.out.println();
+
+        /** [Optional 객체 생성] */
+        String str = "abc";
+        Optional<String> optVal1 = Optional.of(str);
+        Optional<String> optVal2 = Optional.of("abc");
+        Optional<String> optVal3 = Optional.of(new String("abc"));
+
+        str = null;
+//        Optional<String> optVal4 = Optional.of(str);    // NullPointerException
+        Optional<String> optVal5 = Optional.ofNullable(str);
+
+        Optional<String> optVal6 = null;
+        Optional<String> optVal7 = Optional.<String>empty();    // 빈 객체로 초기화 하는것이 바람직
+
+        /** [Optional 객체 값 가져오기] */
+//        Optional<String> optVal8 = Optional.of("abc");
+        Optional<String> optVal8 = Optional.ofNullable(null);
+//        String str1 = optVal8.get();
+        String str2 = optVal8.orElse("널이다");
+        System.out.println(str2);
+
+        String str3 = optVal8.orElseGet(String::new);                   // Null 이면 Null 을 대체할 값 반환
+        String str4 = optVal8.orElseThrow(NullPointerException::new);   // Null 이면 지정된 예외 발생
+
+
+
+
 
     }
 
 }
+
