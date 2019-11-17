@@ -1,6 +1,7 @@
 package ch14;
 
 import java.util.Optional;
+import java.util.OptionalInt;
 
 public class OptionalEx1 {
 
@@ -24,8 +25,39 @@ public class OptionalEx1 {
         System.out.println("result2 : " + result2);
 
 
+        Optional.of("456").map(Integer::parseInt)
+                .ifPresent(x -> System.out.printf("result3 : %d%n", x));   // null 이면 아무것도 일어나지 않음.
+
+        OptionalInt optInt1 = OptionalInt.of(0);        // 0 저장
+        OptionalInt optInt2 = OptionalInt.empty();      // 빈 객체
+
+        System.out.println(optInt1.isPresent());        // 값이 저장되면 true
+        System.out.println(optInt2.isPresent());
+
+        System.out.println(optInt1.getAsInt());
+//        System.out.println(optInt2.getAsInt());
+        System.out.println("optInt1 : " + optInt1);
+        System.out.println("optInt2 : " + optInt2);
+        System.out.println("optInt1.equals(optInt2)? " + optInt1.equals(optInt2));
 
 
+        Optional<String> opt1 = Optional.ofNullable(null);
+        Optional<String> opt2 = Optional.empty();
+        System.out.println("opt1.equals(opt2)? " + opt1.equals(opt2));
+
+        int result3 = optStrToInt(Optional.of("123"), 0);
+        int result4 = optStrToInt(Optional.of(""), 0);
+
+        System.out.println("result3 : " + result3);
+        System.out.println("result4 : " + result4);
+    }
+
+    static int optStrToInt(Optional<String> optStr, int defaultValue) {
+        try {
+            return optStr.map(Integer::parseInt).get();
+        } catch (Exception e) {
+            return defaultValue;
+        }
     }
 
 

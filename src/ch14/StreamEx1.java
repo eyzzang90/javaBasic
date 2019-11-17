@@ -25,9 +25,11 @@ public class StreamEx1{
 
 class Student implements Comparable<Student> {
 
-    String name;
-    int ban;
-    int totalScore;
+    String name;    // 이름
+    boolean isMale; // 성별
+    int hak;        // 학년
+    int ban;        // 반
+    int totalScore; // 최종점수
 
     public int getBan() {
         return ban;
@@ -41,8 +43,24 @@ class Student implements Comparable<Student> {
         return totalScore;
     }
 
+    public boolean isMale() {
+        return isMale;
+    }
+
+    public int getHak() {
+        return hak;
+    }
+
     public Student(String name, int ban, int totalScore) {
         this.name = name;
+        this.ban = ban;
+        this.totalScore = totalScore;
+    }
+
+    public Student(String name, boolean isMale, int hak, int ban, int totalScore) {
+        this.name = name;
+        this.isMale = isMale;
+        this.hak = hak;
         this.ban = ban;
         this.totalScore = totalScore;
     }
@@ -56,10 +74,14 @@ class Student implements Comparable<Student> {
     public String toString() {
         return "Student{" +
                 "name='" + name + '\'' +
+                ", isMale=" + isMale +
+                ", hak=" + hak +
                 ", ban=" + ban +
                 ", totalScore=" + totalScore +
                 '}';
     }
+
+    enum Level {HIGH, MID, LOW}
 }
 
 
