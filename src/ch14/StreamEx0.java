@@ -124,23 +124,24 @@ public class StreamEx0 {
         System.out.println();
 
         strStream = Stream.of("dd", "CC", "aaa", "bb", "c");
-        strStream.sorted((s1, s2) -> s1.compareTo(s2)).forEach(System.out::print);      // 반환이 int인 람다식도 가능
+        strStream.sorted((s1, s2) -> s1.compareTo(s2)).forEach(System.out::print);      // 반환이 int인 람다식도 가능 [CCaaabbcdd]
         System.out.println();
 
         strStream = Stream.of("dd", "CC", "aaa", "bb", "c");
-        strStream.sorted(String::compareTo).forEach(System.out::print);
+        strStream.sorted(String::compareTo).forEach(System.out::print);                 // 위의 문장과 동일 [CCaaabbcdd]
         System.out.println();
 
         Stream<String> reverseStream = Stream.of("dd", "CC", "aaa", "bb", "c");
-        reverseStream.sorted(Comparator.reverseOrder()).forEach(System.out::print);     // 기본정렬 역순
+        reverseStream.sorted(Comparator.reverseOrder()).forEach(System.out::print);     // 기본정렬 역순 [ddcbbaaaCC]
         System.out.println();
 
         Stream<String> insentiveStream = Stream.of("dd", "CC", "aaa", "bb", "c");
-        insentiveStream.sorted(String.CASE_INSENSITIVE_ORDER).forEach(System.out::print);   // 대소문자 구분 안함
+        insentiveStream.sorted(String.CASE_INSENSITIVE_ORDER).forEach(System.out::print);   // 대소문자 구분 안함 [aaabbcCCdd]
         System.out.println();
 
         Stream<String> lengthStream = Stream.of("dd", "CC", "aaa", "bb", "c");
-        lengthStream.sorted(Comparator.comparing(String::length)).forEach(System.out::print);   // 길이 순 정렬
+        lengthStream.sorted(Comparator.comparing(String::length)).forEach(System.out::print);   // 길이 순 정렬 [cddCCbbaaa]
+        System.out.println();
 
 
         /** 변환 map() */
@@ -206,12 +207,12 @@ public class StreamEx0 {
         for(int num : lottoList) {
             System.out.print(num + ",");
         }
-
+        System.out.println();
         System.out.println("------------------------");
 
         IntStream intStream4 = new Random().ints(1, 46);
         IntStream lottoStream =  intStream4.limit(6).distinct().sorted();
-        Stream<String> strLottoStream = lottoStream.mapToObj(i -> i+",");
+        Stream<String> strLottoStream = lottoStream.mapToObj(i -> i+",");       // 정수를 문자열로 변환
         strLottoStream.forEach(System.out::print);
 
         System.out.println();
@@ -225,9 +226,12 @@ public class StreamEx0 {
         str = null;
 //        Optional<String> optVal4 = Optional.of(str);    // NullPointerException
         Optional<String> optVal5 = Optional.ofNullable(str);
+        System.out.println("optVal5> " + optVal5);
 
         Optional<String> optVal6 = null;
         Optional<String> optVal7 = Optional.<String>empty();    // 빈 객체로 초기화 하는것이 바람직
+
+        System.out.println("optVal7> " + optVal7);
 
         /** [Optional 객체 값 가져오기] */
 //        Optional<String> optVal8 = Optional.of("abc");
@@ -237,6 +241,8 @@ public class StreamEx0 {
         System.out.println(str2);
 
         String str3 = optVal8.orElseGet(String::new);                   // Null 이면 Null 을 대체할 값 반환
+
+        System.out.println("str3> " + str3);
         String str4 = optVal8.orElseThrow(NullPointerException::new);   // Null 이면 지정된 예외 발생
 
 

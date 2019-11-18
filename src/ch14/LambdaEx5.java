@@ -7,6 +7,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+/**
+ * 함수형 인터페이스 사용 예제
+ */
 public class LambdaEx5 {
 
     public static void main(String[] args) {
@@ -44,8 +47,8 @@ public class LambdaEx5 {
     /**
      * 제네릭 메소드(generic method)
      *
-     * 제네릭 메소드란 메소드의 선언부에 타입 변수를 사용한 메소드를 의미합니다.
-     * 이때 타입 변수의 선언은 메소드 선언부에서 반환 타입 바로 앞에 위치합니다.
+     * 제네릭 메소드란 메소드의 선언부에 타입 변수를 사용한 메소드를 의미
+     * 이때 타입 변수의 선언은 메소드 선언부에서 반환 타입 바로 앞에 위치
      */
 
     static <T> void makeRandomList(Supplier<T> s, List<T> list) {

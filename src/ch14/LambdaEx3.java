@@ -20,11 +20,11 @@ class Outer {
 
         void method(int i) {        // void method(final int i)
             int val = 30;           // final int val = 30;
-            i = 10;                 // 에러. 상수의 값 변경 불가.
+//            i = 10;                 // 에러. 상수의 값 변경 불가.
 
-            // System.out.println(i);      일반적인 상태로는 값 변경 가능.
+//             System.out.println(i);      일반적인 상태로는 값 변경 가능.
 
-/*            MyFunction3 f = () -> {
+            MyFunction3 f = () -> {
                 System.out.println(" i : " + i);        // 람다식 내에서 참조하는 지역변수는 final이 붙지 않았어도 상수로 간주.
                 System.out.println(" val : " + val);
                 System.out.println(" this.val : " + ++this.val);
@@ -32,7 +32,7 @@ class Outer {
 
             };
 
-            f.myMethod();*/
+            f.myMethod();
         }
     }   // Innter 클래스 끝
 
