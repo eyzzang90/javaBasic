@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.*;
  * 그룹화와 분할 - groupingBy(), partitioningBy()
 
  * groupingBy()는 스트림의 요소를 Function으로, partitioningBy()는 Predicate로 분류한다
- * partitioningBy() : 두 개의 그룹으로 나누어여 하는 경우 빠름
+ * partitioningBy() : 두 개의 그룹으로 나누어야 하는 경우 빠름
  * groupingBy() : 그 외의 경우에 사용
  */
 public class StreamEx8 {
@@ -24,7 +24,7 @@ public class StreamEx8 {
                 new Student("김지미", false, 1, 1, 250),
                 new Student("김자바", true, 1, 1, 200),
                 new Student("이지미", false, 1, 2, 150),
-                new Student("남자마", true, 1, 2, 100),
+                new Student("남자바", true, 1, 2, 100),
                 new Student("안지미", false, 1, 2, 50),
                 new Student("황지미", false, 1, 3, 100),
                 new Student("강지미", false, 1, 3, 150),
@@ -34,7 +34,7 @@ public class StreamEx8 {
                 new Student("김지미", false, 2, 1, 250),
                 new Student("김자바", true, 2, 1, 200),
                 new Student("이지미", false, 2, 2, 150),
-                new Student("남자마", true, 2, 2, 100),
+                new Student("남자바", true, 2, 2, 100),
                 new Student("안지미", false, 2, 2, 50),
                 new Student("황지미", false, 2, 3, 100),
                 new Student("강지미", false, 2, 3, 150),

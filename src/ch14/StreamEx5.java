@@ -12,7 +12,7 @@ public class StreamEx5 {
 
     public static void main(String[] args) {
 
-        String[] strArr = {"Inheritance", "Java", "Lambda", "stream"};
+        String[] strArr = {"Inheritance", "Java", "Lambda", "stream", "OptionalDouble"};
 
         Stream.of(strArr).forEach(System.out::println);         // 스트림의 요소 소모
 
@@ -29,6 +29,8 @@ public class StreamEx5 {
         IntStream intStream2 = Stream.of(strArr).mapToInt(String::length);
         IntStream intStream3 = Stream.of(strArr).mapToInt(String::length);
         IntStream intStream4 = Stream.of(strArr).mapToInt(String::length);
+        IntStream intStream5 = Stream.of(strArr).mapToInt(String::length);
+        IntStream intStream6 = Stream.of(strArr).mapToInt(String::length);
 
         int count = intStream1.reduce(0, (a,b) -> a+1);
         System.out.println("count : " + count);
@@ -36,12 +38,16 @@ public class StreamEx5 {
         int sum = intStream2.reduce(0, (a,b) -> a+b);
         System.out.println("sum : " + sum);
 
-        OptionalInt max = intStream3.reduce(Integer::max);
-        System.out.println("max : " + max);
+        OptionalInt max = intStream3.reduce(Integer::max);  // int max(int a, int b)
+        System.out.println("max : " + max.getAsInt());
 
-        OptionalInt max2 = intStream4.reduce((a,b) -> a > b ? a: b);
-        System.out.println("max2 : " + max2);
+        OptionalInt max2 = intStream4.reduce((a,b) -> a > b ? a : b);
+        System.out.println("max2 : " + max2.getAsInt());
 
+        OptionalInt min = intStream5.reduce(Integer::min);  // int min(int a, int b)
+        System.out.println("min : " + min.getAsInt());
 
+        OptionalInt min2 = intStream6.reduce((a,b) -> a < b ? a : b);
+        System.out.println("min2 : " + min2.getAsInt());
     }
 }

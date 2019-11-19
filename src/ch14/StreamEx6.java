@@ -57,7 +57,7 @@ public class StreamEx6 {
 
         /** [통계 - summarizingInt] */
         IntSummaryStatistics stat = Stream.of(stuArr)
-                .collect(summarizingInt(Student::getTotalScore));
+                .collect(summarizingInt(Student::getTotalScore));       // Collectors.summarizingInt
         System.out.println(stat);
 
         /** [리듀싱 - reducing] */
